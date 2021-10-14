@@ -1,10 +1,11 @@
 <template>
   <div>
     <h1>{{ text }}</h1>
-    <h2>テストページです</h2>
+    <h2>テストページ</h2>
     <h3>テストの詳細</h3>
     <h4>SCSSの導入</h4>
     <button @click="login">ログイン</button>
+    <button>登録</button>
   </div>
 </template>
 
@@ -27,7 +28,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 h1 {
   color: red;
 }
