@@ -1,14 +1,14 @@
 <template>
   <div>
     <Button
-      class="payment"
+      :class="income"
       :text="paymentButton"
-      @click="formflg = false"
+      @my-event="showPaymentRegister"
     ></Button>
     <Button
-      class="income"
+      :class="income"
       :text="incomeButton"
-      @click="formflg = true"
+      @my-event="showIncomeRegister"
     ></Button>
     <IncomeRegister v-show="formflg"></IncomeRegister>
     <PaymentRegister v-show="!formflg"></PaymentRegister>
@@ -147,6 +147,14 @@ export default defineComponent({
     const incomeButton = ref<string>('収入')
     const paymentButton = ref<string>('支出')
 
+    const showIncomeRegister = () => {
+      formflg.value = true
+    }
+
+    const showPaymentRegister = () => {
+      formflg.value = false
+    }
+
     return {
       income,
       incomeDate,
@@ -163,6 +171,8 @@ export default defineComponent({
       resisterPayment,
       incomeButton,
       paymentButton,
+      showIncomeRegister,
+      showPaymentRegister,
     }
   },
 })
@@ -171,7 +181,9 @@ export default defineComponent({
 <style scoped lang="scss">
 .income {
   color: black;
+  background-color: black;
 }
+
 // div {
 //   .container {
 //     max-width: 600px;

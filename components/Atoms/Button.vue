@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="payment">{{ text }}</button>
+    <button class="payment" @click="handleClick">{{ text }}</button>
   </div>
 </template>
 
@@ -12,6 +12,13 @@ export default {
       type: String,
       default: 'ボタン',
     },
+  },
+  setup(_: any, { emit }: { emit: any }) {
+    const handleClick = () => {
+      emit('my-event')
+    }
+
+    return { handleClick }
   },
 }
 </script>
