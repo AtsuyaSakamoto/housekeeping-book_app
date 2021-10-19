@@ -1,15 +1,11 @@
 <template>
   <div>
-    <Button
-      :class="income"
-      :text="paymentButton"
-      @my-event="showPaymentRegister"
-    ></Button>
-    <Button
-      :class="income"
-      :text="incomeButton"
-      @my-event="showIncomeRegister"
-    ></Button>
+    <div class="payment-btn">
+      <Button :text="paymentButton" @my-event="showPaymentRegister"></Button>
+    </div>
+    <div class="income-btn">
+      <Button :text="incomeButton" @my-event="showIncomeRegister"></Button>
+    </div>
     <IncomeRegister v-show="formflg"></IncomeRegister>
     <PaymentRegister v-show="!formflg"></PaymentRegister>
 
@@ -179,9 +175,26 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.income {
-  color: black;
-  background-color: black;
+.income-btn {
+  ::v-deep .btn-design {
+    background-color: #2abca7;
+    width: 8%;
+    margin-left: 900px;
+    &:hover {
+      background-color: #19a08c;
+    }
+  }
+}
+
+.payment-btn {
+  ::v-deep .btn-design {
+    background-color: #ff0000;
+    width: 8%;
+    margin-left: 650px;
+    &:hover {
+      background-color: #cc0000;
+    }
+  }
 }
 
 // div {

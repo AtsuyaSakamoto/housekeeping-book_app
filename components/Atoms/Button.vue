@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="payment" @click="handleClick">{{ text }}</button>
+    <button class="btn-design" @click="handleClick">{{ text }}</button>
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-button {
+.btn-design {
   margin-top: 15px;
   margin-bottom: 25px;
   background-color: #2abca7;
@@ -35,31 +35,10 @@ button {
   border: 1px solid #2abca7;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  display: inline-block;
+  // display: inline-block;
   cursor: pointer;
   width: 30%;
   color: #fff;
-  &:hover {
-    background: #19a08c;
-  }
-  &.income {
-    width: 8%;
-    margin-left: 30px;
-  }
-  &.payment {
-    background: #ff0000;
-    width: 8%;
-    margin-left: 680px;
-    &:hover {
-      background: #cc0000;
-    }
-  }
-  &.payment-register {
-    background: #ff0000;
-    &:hover {
-      background: #cc0000;
-    }
-  }
 }
 
 /* media queries */

@@ -6,7 +6,10 @@
           <h2 class="payment-title">支出内容</h2>
         </div>
         <select v-model="paymentGenru">
-          <option value="未分類" selected>未分類</option>
+          <option class="empty" value="選択してください" disabled>
+            選択してください
+          </option>
+          <option value="未分類">未分類</option>
           <option value="家賃">家賃</option>
           <option value="食費">食費</option>
           <option value="光熱費">光熱費</option>
@@ -19,9 +22,14 @@
           v-model="cost"
           type="text"
           name="cost"
-          placeholder="金額"
+          placeholder="金額：（例）20,000"
+          autocomplete="off"
         /><br />
-        <input v-model="paymentPayee" type="text" placeholder="支払い先" />
+        <input
+          v-model="paymentPayee"
+          type="text"
+          placeholder="支払い先：（例）アマゾン"
+        />
         <textarea
           v-model="paymentMemo"
           type="text"
@@ -63,12 +71,11 @@ export default defineComponent({
         incomeMemo,
       }
       console.log(incomeData)
-      console.log('あああ')
     }
 
     const cost = ref<number>()
     const paymentDate = ref<string>('')
-    const paymentGenru = ref<string>('未分類')
+    const paymentGenru = ref<string>('選択してください')
     const paymentPayee = ref<string>('')
     const paymentMemo = ref<string>('')
 
@@ -166,6 +173,11 @@ textarea {
 }
 ::-webkit-input-placeholder {
   color: #fafafa;
+}
+select {
+  .empty {
+    color: red;
+  }
 }
 
 button {
