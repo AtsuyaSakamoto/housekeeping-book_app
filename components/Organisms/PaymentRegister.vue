@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 <template>
   <div>
     <form v-show="!formflg" id="contact">
@@ -34,7 +35,7 @@
           v-model="paymentMemo"
           type="text"
           name="memo"
-          placeholder="memo"
+          placeholder="Memo"
         ></textarea
         ><br />
         <div class="message">Message Sent</div>
@@ -52,46 +53,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api'
+import { defineComponent } from '@vue/composition-api'
+import useRegister from '../../composables/use-register'
 
 export default defineComponent({
   setup() {
-    const income = ref<number>()
-    const incomeDate = ref<string>('')
-    const incomeGenru = ref<string>('未分類')
-    const incomePayee = ref<string>('')
-    const incomeMemo = ref<string>('')
-
-    const resisterIncome = () => {
-      const incomeData = {
-        income,
-        incomeDate,
-        incomeGenru,
-        incomePayee,
-        incomeMemo,
-      }
-      console.log(incomeData)
-    }
-
-    const cost = ref<number>()
-    const paymentDate = ref<string>('')
-    const paymentGenru = ref<string>('選択してください')
-    const paymentPayee = ref<string>('')
-    const paymentMemo = ref<string>('')
-
-    const resisterPayment = () => {
-      const paymentData = {
-        cost,
-        paymentDate,
-        paymentGenru,
-        paymentPayee,
-        paymentMemo,
-      }
-      console.log(paymentData)
-    }
-
-    const formflg = ref<boolean>(false)
-
+    const {
+      income,
+      incomeDate,
+      incomeGenru,
+      incomePayee,
+      incomeMemo,
+      resisterIncome,
+      formflg,
+      cost,
+      paymentDate,
+      paymentGenru,
+      paymentPayee,
+      paymentMemo,
+      resisterPayment,
+    } =
+      // @ts-ignore
+      useRegister()
     return {
       income,
       incomeDate,
@@ -109,6 +92,68 @@ export default defineComponent({
     }
   },
 })
+</script>
+// //
+<script lang="ts">
+// import { defineComponent, ref } from '@nuxtjs/composition-api'
+
+// export default defineComponent({
+//   setup() {
+//     const income = ref<number>()
+//     const incomeDate = ref<string>('')
+//     const incomeGenru = ref<string>('未分類')
+//     const incomePayee = ref<string>('')
+//     const incomeMemo = ref<string>('')
+
+//     const resisterIncome = () => {
+//       const incomeData = {
+//         income,
+//         incomeDate,
+//         incomeGenru,
+//         incomePayee,
+//         incomeMemo,
+//       }
+//       console.log(incomeData)
+//     }
+
+//     const cost = ref<number>()
+//     const paymentDate = ref<string>('')
+//     const paymentGenru = ref<string>('選択してください')
+//     const paymentPayee = ref<string>('')
+//     const paymentMemo = ref<string>('')
+
+//     const resisterPayment = () => {
+//       const paymentData = {
+//         cost,
+//         paymentDate,
+//         paymentGenru,
+//         paymentPayee,
+//         paymentMemo,
+//       }
+//       console.log(paymentData)
+//     }
+
+//     const formflg = ref<boolean>(false)
+
+//     return {
+//       income,
+//       incomeDate,
+//       incomeGenru,
+//       incomePayee,
+//       incomeMemo,
+//       resisterIncome,
+//       formflg,
+//       cost,
+//       paymentDate,
+//       paymentGenru,
+//       paymentPayee,
+//       paymentMemo,
+//       resisterPayment,
+//     }
+//   },
+// })
+//
+//
 </script>
 
 <style scoped lang="scss">
@@ -212,6 +257,7 @@ button {
   }
   &.payment-register {
     background: #ff0000;
+    font-weight: bold;
     &:hover {
       background: #cc0000;
     }

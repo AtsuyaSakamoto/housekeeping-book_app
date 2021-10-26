@@ -6,6 +6,9 @@
           <h2>収入内容</h2>
         </div>
         <select v-model="incomeGenru">
+          <option class="empty" value="選択してください" disabled>
+            選択してください
+          </option>
           <option value="未分類" selected>未分類</option>
           <option value="給与">給与</option>
           <option value="その他">その他</option></select
@@ -15,9 +18,14 @@
           v-model="income"
           type="text"
           name="cost"
-          placeholder="金額"
+          autocomplete="off"
+          placeholder="金額：（例）20,000"
         /><br />
-        <input v-model="incomePayee" type="text" placeholder="受け取り先" />
+        <input
+          v-model="incomePayee"
+          type="text"
+          placeholder="収入先：（例）ラクラク株式会社"
+        />
         <textarea
           v-model="incomeMemo"
           type="text"
@@ -46,7 +54,7 @@ export default defineComponent({
   setup() {
     const income = ref<number>()
     const incomeDate = ref<string>('')
-    const incomeGenru = ref<string>('未分類')
+    const incomeGenru = ref<string>('選択してください')
     const incomePayee = ref<string>('')
     const incomeMemo = ref<string>('')
 
@@ -59,7 +67,6 @@ export default defineComponent({
         incomeMemo,
       }
       console.log(incomeData)
-      console.log('あああ')
     }
 
     const cost = ref<number>()
@@ -163,6 +170,11 @@ textarea {
 ::-webkit-input-placeholder {
   color: #fafafa;
 }
+select {
+  .empty {
+    color: red;
+  }
+}
 
 button {
   margin-top: 15px;
@@ -196,6 +208,7 @@ button {
   }
   &.payment-register {
     background: #ff0000;
+    font-weight: bold;
     &:hover {
       background: #cc0000;
     }
