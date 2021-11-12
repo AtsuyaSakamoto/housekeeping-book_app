@@ -1,4 +1,6 @@
-export default {
+import { NuxtConfig } from '@nuxt/types'
+
+const config: NuxtConfig = {
   storybook: {
     // 追加のアドオンなどあれば
     addons: ['@storybook/addon-controls', '@storybook/addon-notes'],
@@ -78,7 +80,48 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/pwa',
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: 'AIzaSyBhyxujYfrruPLpLLa4ma57gBlO6tcVQk0',
+          authDomain: 'nuxt-example-b038b.firebaseapp.com',
+          projectId: 'nuxt-example-b038b',
+          storageBucket: 'nuxt-example-b038b.appspot.com',
+          messagingSenderId: '905649210872',
+          appId: '1:905649210872:web:44dc483ee14dc0cc31820d',
+          measurementId: 'G-SSW1ZRFF38',
+        },
+        services: {
+          auth: {
+            persistence: 'local', // default
+            initialize: {
+              // onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
+              // onAuthStateChangedAction: 'onAuthStateChangedAction',
+              subscribeManually: false,
+            },
+            ssr: false,
+            // emulatorPort: 9099,
+            // emulatorHost: 'http://localhost',
+          },
+          firestore: true,
+          storage: true,
+        },
+      },
+    ],
   ],
+  pwa: {
+    meta: false,
+    icon: false,
+
+    workbox: {
+      importScripts: ['/firebase-auth-sw.js'],
+
+      dev: true,
+    },
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
@@ -86,3 +129,5 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 }
+
+export default config
